@@ -22,7 +22,7 @@
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                             aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
+                            <span class="navbar-toggler-icon bg-danger"></span>
                         </button>
                         <a class="navbar-brand text-info" href="#">MovieDB</a>
                         <div class="collapse navbar-collapse" id="navbarNav">
@@ -31,14 +31,14 @@
                                     <a class="nav-link active text-info" aria-current="page" href="#">Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-info" href="#">Recently Added</a>
+                                    <a class="nav-link text-info" id="genresDisplay" href="#">Genres</a>
                                 </li>
                             </ul>
                         </div>
                         <form class="d-flex" role="search">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"
                                 id="searchBar">
-                            <button class="btn btn-outline-danger" type="submit">Search</button>
+                            <button class="btn btn-outline-danger" id="btnSearch" type="submit">Search</button>
                         </form>
                     </div>
                 </nav>
@@ -46,9 +46,14 @@
             <div class="row">
             </div>
         </div>
+
+        <div class="container flex">
+            <div class="row row-cols-lg-6" id="sections"></div>
+        </div>
+
     </header>
 
-    <main>
+    <main id="mainContainer">
 
         <div class="container">
             <div id="upcomingMovies" class="carousel slide" data-bs-ride="carousel">
@@ -68,8 +73,18 @@
             </div>
         </div>
 
+        
+
+
+        <div class="container">
+            <div class="row flex-column">
+
+
+            </div>
+        </div>
+
         <div class="container secondaryContainer">
-            <div class="titleSection"></div>
+            <!-- <div class="titleSection" id="titleSection"></div> -->
 
             <div class="moviesGen">
                 <!--Se debe generar un boton izq class= "btnLeft",
@@ -86,7 +101,10 @@
         </div>
     </main>
 
+
+    <script src="./javascript/genresData.js"></script>
     <script src="./javascript/app.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
