@@ -7,6 +7,10 @@ const displayGenres = document.getElementById('genresDisplay')
 const mainCarousel = document.querySelector('#carouselUpcoming')
 const tagsElement = document.getElementById('sections')
 const mainContainer = document.getElementById('mainContainer')
+const topRated = document.getElementById('carouselMovies')
+const arrowLeft = document.getElementById('btnLeft')
+const arrowRight = document.getElementById('btnRight')
+
 
 //button to show the available genres NOTE: HIDE IS NOT WORKING
 displayGenres.addEventListener('click', () => {    
@@ -84,7 +88,41 @@ function clearMainSection(){
     mainContainer.innerHTML = ''
 }
 
+const carouselTopRated = async () =>{
+    try{
+        const response = await fetch(`${baseURL}/movie/top_rated${key}`)
+        if (response.status === 200){
+            const data = await response.json();
+            console.log(data)
+            data.results.forEach(movie =>{
+                const carouselTopRated = document.createElement('div')
+                carouselTopRated.classList.add('movie')
+                carouselTopRated.innerHTML = `
+                    <a href="#"><img src="${imageURL}${movie.poster_path}" alt="${movie.original_title}"></a>
+                `
+                topRated.appendChild(carouselTopRated)
+            })
 
+        }
+    }catch(error){
+
+    }
+}
+
+arrowLeft.addEventListener('click', () =>{
+    topRated.scrollLeft += topRated.offsetWidth;
+})
+/*
+flechaDer.addEventListener('click', () =>{
+    fila.scrollLeft += fila.offsetWidth;
+
+    //para cambiar el indicador si se cambia con las flechas
+    const indicatorActive = document.querySelector('.indicadores .active');
+    if(indicatorActive.nextSibling){
+        indicatorActive.nextSibling.classList.add('active')
+        indicatorActive.classList.remove('active')
+    }
+}) */
 //call functions to execute
 carouselUpcomingFunction();
-displayGenres();
+carouselTopRated();
