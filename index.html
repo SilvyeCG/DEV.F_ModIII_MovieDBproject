@@ -77,23 +77,16 @@
 
         <!--TOP RATED-->
 
-        <div class="secondaryContainer">
-            <div class="row">
-                <div class="col-12">
-                    <div class="titleSection text-white fs-3 fw-bolder mt-5 mb-4" id="titleSection">TOP RATED</div>
-                </div>
-            </div>
-            <div class="moviesGen">
-                <button role="button" id="btnLeft" class="btnLeft"><span class="material-symbols-outlined">
-                    arrow_back_ios
-                    </span></button>
-                    <div class="carouselMovies" id="carouselMovies"></div>
-                <button role="button" id="btnRight" class="btnRight"><span class="material-symbols-outlined">
-                    arrow_forward_ios
-                </span></button>
+        <div class="container">
+            <div class="row row-cols-3" id="contenedor">
+
             </div>
         </div>
-    </main>
+
+		<div class="paginacion">
+			<button id="btnAnterior">Last</button>
+			<button id="btSiguiente">Next</button>
+		</div>
 
     <!--scripts-->
     <script src="./javascript/genresData.js"></script>

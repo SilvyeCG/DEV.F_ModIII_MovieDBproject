@@ -7,9 +7,6 @@ const displayGenres = document.getElementById('genresDisplay')
 const mainCarousel = document.querySelector('#carouselUpcoming')
 const tagsElement = document.getElementById('sections')
 const mainContainer = document.getElementById('mainContainer')
-const topRated = document.getElementById('carouselMovies')
-const arrowLeft = document.getElementById('btnLeft')
-const arrowRight = document.getElementById('btnRight')
 
 
 //button to show the available genres NOTE: HIDE IS NOT WORKING
@@ -88,41 +85,35 @@ function clearMainSection(){
     mainContainer.innerHTML = ''
 }
 
-const carouselTopRated = async () =>{
+const TopRated = async () =>{
     try{
         const response = await fetch(`${baseURL}/movie/top_rated${key}`)
         if (response.status === 200){
             const data = await response.json();
-            console.log(data)
-            data.results.forEach(movie =>{
-                const carouselTopRated = document.createElement('div')
-                carouselTopRated.classList.add('movie')
-                carouselTopRated.innerHTML = `
-                    <a href="#"><img src="${imageURL}${movie.poster_path}" alt="${movie.original_title}"></a>
-                `
-                topRated.appendChild(carouselTopRated)
-            })
-
+            loadMovies(data)
         }
     }catch(error){
 
     }
 }
 
-arrowLeft.addEventListener('click', () =>{
-    topRated.scrollLeft += topRated.offsetWidth;
-})
-/*
-flechaDer.addEventListener('click', () =>{
-    fila.scrollLeft += fila.offsetWidth;
+function loadMovies(data){
+    let movies = ''
 
-    //para cambiar el indicador si se cambia con las flechas
-    const indicatorActive = document.querySelector('.indicadores .active');
-    if(indicatorActive.nextSibling){
-        indicatorActive.nextSibling.classList.add('active')
-        indicatorActive.classList.remove('active')
-    }
-}) */
+    data.results.forEach(movie =>{
+
+        movies +=`
+        <div class='col mb-3 pelicula'>
+            <img class='img-fluid' src= '${imageURL}${movie.poster_path}'>
+            <a href="#"><p class='title text-center'>${movie.title}</p></a>
+        </div>
+        `
+
+        document.getElementById('contenedor').innerHTML = movies
+    })
+
+}
+
 //call functions to execute
 carouselUpcomingFunction();
-carouselTopRated();
+TopRated();

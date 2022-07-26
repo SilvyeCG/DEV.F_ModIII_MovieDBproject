@@ -4,82 +4,8 @@
     max-width: 30%;
 }
 
-.secondaryContainer{
-    width: 90%;
+#contenedor img{
+    display: block;
     margin: auto;
-    margin-bottom: 70px;
-}
-
-.secondaryContainer .moviesGen{
-    display: flex;
-    align-items: center;
-    position: relative;
-}
-
-.secondaryContainer .moviesGen .btnLeft,
-.secondaryContainer .moviesGen .btnRight{
-    position: absolute;
-    border: none;
-    background-color: rgba(0,0,0,0.3);
-    font-size: 40px;
-    height: 50%;
-    top: calc(50%-25%);
-    line-height: 40px;
-    width: 50px;
-    color: white;
-    cursor: pointer;
-    z-index: 500; 
-    transition: 0.2s ease all;
-}
-
-.secondaryContainer .moviesGen .btnLeft:hover,
-.secondaryContainer .moviesGen .btnRight:hover{
-    background-color: rgba(250, 4, 4, 0.3);
-}
-
-.secondaryContainer .moviesGen .btnLeft{
-    left: 0%;
-}
-
-.secondaryContainer .moviesGen .btnRight{
-    right: 0%;
-}
-
-.secondaryContainer .moviesGen .carouselMovies{
-    display: flex;
-}
-
-.secondaryContainer .moviesGen .carouselMovies .movie{
-    min-width: 20%;
-    transition: 0.3s ease all;
-    box-shadow: 5px, 5px, 10px rgba(0, 0, 0, 0.3);
-}
-
-.secondaryContainer .moviesGen .carouselMovies .movie img{
-    width: 100%;
-    vertical-align: top;
-}
-
-/* NOTE: ADD CLASS hover BY JS */
-.secondaryContainer .moviesGen .carouselMovies .movie .hover{
-    transform: scale(1.2);
-    transform-origin: center;
-}
-
-@media screen and (max-width:800px) {
-
-    .secondaryContainer .moviesGen{
-        overflow: visible;
-    }
-
-    .secondaryContainer .moviesGen .carouselMovies{
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-    }
-
-    .secondaryContainer .moviesGen .btnLeft,
-    .secondaryContainer .moviesGen .btnRight{
-        display: none;
-    }
+    max-width: 30%;
 }
