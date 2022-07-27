@@ -7,7 +7,8 @@ const displayGenres = document.getElementById('genresDisplay')
 const mainCarousel = document.querySelector('#carouselUpcoming')
 const tagsElement = document.getElementById('sections')
 const mainContainer = document.getElementById('mainContainer')
-
+const resultSearch = document.getElementById('searchBar')
+const posterDetails = document.getElementById('posterDetails')
 
 //button to show the available genres NOTE: HIDE IS NOT WORKING
 
@@ -91,13 +92,23 @@ const TopRated = async () => {
         const response = await fetch(`${baseURL}/movie/top_rated${key}`)
         if (response.status === 200) {
             const data = await response.json();
-            console.log(data)
-            console.log(data.results[2])
             loadMovies(data)
+
+        
+
         }
     } catch (error) {
 
     }
+}
+async function getMovieDetails(movieId) {
+    const response = await fetch(`${baseURL}/movie/${movieId}${key}`)
+    if (response.status === 200) {
+        const data = await response.json();
+        console.log(data.title)
+        
+    }
+
 }
 
 function loadMovies(data) {
@@ -106,9 +117,9 @@ function loadMovies(data) {
     data.results.forEach(movie => {
         if (i < 15) {
             movies += `
-        <div class='col mb-3'>
-            <a href="#"><img class='img-fluid' src= '${imageURL}${movie.poster_path}'></a>
-            <a href="#"><p class='title text-center'>${movie.title}</p></a>
+        <div class='col mb-3' onclick='getMovieDetails(${movie.id})'>
+            <a href="#" id="movieInfo"><img class='img-fluid' src= '${imageURL}${movie.poster_path}'></a>
+            <a href="#" id="movieInfo"><p class='title text-center'>${movie.title}</p></a>
         </div>
         `
 
@@ -116,7 +127,6 @@ function loadMovies(data) {
 
             i++
         }
-
     })
 
 }
