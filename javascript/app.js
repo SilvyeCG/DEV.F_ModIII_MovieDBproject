@@ -10,11 +10,12 @@ const mainContainer = document.getElementById('mainContainer')
 
 
 //button to show the available genres NOTE: HIDE IS NOT WORKING
-displayGenres.addEventListener('click', () => {    
+
+displayGenres.addEventListener('click', () => {
     tagsElement.innerHTML = '';
-    genres.forEach(genre =>{
+    genres.forEach(genre => {
         const tagEl = document.createElement('button');
-        tagEl.classList.add('col' , 'mb-3' ,'rounded-pill', 'bg-danger', 'm-3', 'p-1', 'text-center' , 'tag');
+        tagEl.classList.add('col', 'mb-3', 'rounded-pill', 'bg-danger', 'm-3', 'p-1', 'text-center', 'tag');
         tagEl.id = genre.id;
         tagEl.innerText = genre.name;
         tagsElement.append(tagEl)
@@ -26,7 +27,7 @@ const carouselUpcomingFunction = async () => {
 
     try {
         const response = await fetch(`${baseURL}/movie/upcoming${key}`)
-//verify the response status
+        //verify the response status
         if (response.status === 200) {
             const data = await response.json();
             data.results.forEach(movie => {
@@ -37,7 +38,7 @@ const carouselUpcomingFunction = async () => {
                 `
                 mainCarousel.appendChild(carouselMoviesUpcoming);
             });
-        }else if(response.status == 401){
+        } else if (response.status == 401) {
             clearMainSection();
             const errorMessage = document.createElement('div')
             errorMessage.classList.add('container')
@@ -54,7 +55,7 @@ const carouselUpcomingFunction = async () => {
                 </div>
             `
             mainContainer.appendChild(errorMessage)
-        }else if(response.status == 404){
+        } else if (response.status == 404) {
             clearMainSection();
             const errorMessage = document.createElement('div')
             errorMessage.classList.add('container')
@@ -71,7 +72,7 @@ const carouselUpcomingFunction = async () => {
                 </div>
             `
             mainContainer.appendChild(errorMessage)
-        }else{
+        } else {
 
         }
 
@@ -81,35 +82,41 @@ const carouselUpcomingFunction = async () => {
 
 }
 
-function clearMainSection(){
+function clearMainSection() {
     mainContainer.innerHTML = ''
 }
 
-const TopRated = async () =>{
-    try{
+const TopRated = async () => {
+    try {
         const response = await fetch(`${baseURL}/movie/top_rated${key}`)
-        if (response.status === 200){
+        if (response.status === 200) {
             const data = await response.json();
+            console.log(data)
+            console.log(data.results[2])
             loadMovies(data)
         }
-    }catch(error){
+    } catch (error) {
 
     }
 }
 
-function loadMovies(data){
+function loadMovies(data) {
     let movies = ''
-
-    data.results.forEach(movie =>{
-
-        movies +=`
-        <div class='col mb-3 pelicula'>
-            <img class='img-fluid' src= '${imageURL}${movie.poster_path}'>
+    let i = 0
+    data.results.forEach(movie => {
+        if (i < 15) {
+            movies += `
+        <div class='col mb-3'>
+            <a href="#"><img class='img-fluid' src= '${imageURL}${movie.poster_path}'></a>
             <a href="#"><p class='title text-center'>${movie.title}</p></a>
         </div>
         `
 
-        document.getElementById('contenedor').innerHTML = movies
+            document.getElementById('contenedor').innerHTML = movies
+
+            i++
+        }
+
     })
 
 }
