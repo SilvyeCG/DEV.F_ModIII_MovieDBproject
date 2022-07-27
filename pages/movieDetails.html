@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../styles/movieDetails.css">
     <title>Movie Details</title>
 </head>
 <body class="bg-black">
@@ -49,17 +50,40 @@
 
     </header>
     <main>
-        <div class="container">
-            <div class="row" id="posterDetails">
-                <div class="col-4" > 
 
+
+        <!-- CAST DETAILS -->
+		<div class="container">
+            <div class="row text-white" id="movieDetails">
+                <div class="col-4">
+                    <img src="../images/poster1.jpg" alt="">
+                    <!-- imagen -->
                 </div>
                 <div class="col-8">
-                    
+                    <div class="row">
+                        <div class="col">
+                            <h3>Movie name: </h3>
+                            <!-- nombre de la movie -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <p>Overview</p>
+                            <!-- overview de la movie -->
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="row row-cols-6 text-white" id="castDetails">
+                <div class="col">
+                    <img src="" alt="">
+                    <p>Nombre</p>
+                </div>                
+            </div>
         </div>
-    </main>
-    <script src="./javascript/app.js"></script>
+
+
+    </main> 
+    <script src="../javascript/app.js"></script>
 </body>
 </html>
