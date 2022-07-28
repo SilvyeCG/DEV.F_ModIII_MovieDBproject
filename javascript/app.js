@@ -52,6 +52,7 @@ const carouselUpcomingFunction = async () => {
         //verify the response status
         if (response.status === 200) {
             const data = await response.json();
+            console.log(data.results)
             data.results.forEach(movie => {
                 const carouselMoviesUpcoming = document.createElement('div')
                 carouselMoviesUpcoming.classList.add('carousel-item')
@@ -123,22 +124,22 @@ function getMovieDetails(movieId) {
 
     // window.location.href = '../pages/movieDetails.html'
      movieData(movieId)
-     //castMovie(movieId)
-     clearMainSection()
+     castMovie(movieId)
+     //clearMainSection()
      async function movieData(movieId){
          try{
              const response = await fetch(`${baseURL}/movie/${movieId}${key}`)
              if(response.status === 200){
                  const data = await response.json();
                  console.log(data.title)
-                 const movieInfo2 = ''
-                 movieInfo2.innerHTML = `
-                 <div class="col">
-                     <p>si se pudo</p>
-                 </div>
+                 //const movieInfo2 = ''
+                //  movieInfo2.innerHTML = `
+                //  <div class="col">
+                //      <p>si se pudo</p>
+                //  </div>
                  
-                 `
-                 document.getElementById('contenedor').innerHTML = movieInfo2
+                //  `
+                //  document.getElementById('contenedor').innerHTML = movieInfo2
                  //movieData.append(movieInfo2)
  
              }
@@ -171,9 +172,9 @@ function loadMovies(data) {
     let i = 0
     data.results.forEach(movie => {
         if (i < 15) {
-            const urlMovie = `${baseURL}/movie/${movie.id}${key}`
+            //const urlMovie = `${baseURL}/movie/${movie.id}${key}`
             movies += `
-        <div class='col mb-3' onclick='getMovieDetails(${urlMovie})'>
+        <div class='col mb-3' onclick='getMovieDetails(${movie.id})'>
             <div class="card bg-black flex-row border border-danger  border-3">
                 <div class="w-50">
                     <a href="" id="movieInfo"><img class='img-fluid' src= '${imageURL}${movie.poster_path}'></a>
