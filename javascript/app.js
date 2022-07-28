@@ -107,7 +107,7 @@ async function getMovieDetails(movieId) {
         const data = await response.json();
         console.log(data.title)
         localStorage.setItem('data', JSON.stringify(data))
-        clearMainSection()
+        //clearMainSection()
         const pruebamil = ''
         pruebamil.innerHTML = `
             <h1 class="text-white">hola</h1>
