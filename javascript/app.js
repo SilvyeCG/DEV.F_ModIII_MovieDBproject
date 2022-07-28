@@ -11,11 +11,8 @@ const closeGenresSec = document.getElementById('closeGenreSection')
 const mainCarousel = document.querySelector('#carouselUpcoming')
 const mainContainer = document.getElementById('mainContainer')
 const resultSearch = document.getElementById('searchBar')
+const movieData = document.getElementById('movieDetail')
 const movieDetails = document.getElementById('castDetails')
-
-homePageLoad.addEventListener('click', () =>{
-    window.location.href = './index.html'
-})
 
 //buttons to show/hide the available genres NOTE: HIDE IS NOT WORKING
 
@@ -42,7 +39,6 @@ displayGenres.addEventListener('click', () => {
 })
 
 closeGenresSec?.addEventListener('click', () =>{
-    
     tagsElement.innerHTML = '';
     closeElement.innerHTML = '';
 
@@ -123,78 +119,64 @@ const TopRated = async () => {
         console.log(error)
     }
 }
-
-
-// async function getMovieDetails(movieId) {
-//     let idMovieDetail = movieId
-//     const  cast = await fetch(`${baseURL}/movie/${idMovieDetail}/credits${key}`)
-//     if (cast.status ===200) {
-//         const dataCast = await cast.json();
-//         console.log(dataCast.cast)
-//         window.location.href = './pages/movieDetails.html'
-//         let castDetails = ''
-//         dataCast.cast.forEach(actor =>{
-//             console.log(actor.name)
-            
-//             castDetails += `
-//                 <div class="col mb-3">
-//                     <a href="#" id="movieInfo"><img class='img-fluid' src= '${imageURL}${actor.profile_path}' alt=""></a>
-//                     <p class='title text-info text-center'>${actor.name}</p>
-//                 </div>
-//             `
-//             document.getElementById('castDetails').innerHTML = castDetails
-//         })
-//     }
-
-// }
-
 function getMovieDetails(movieId) {
 
-    //window.location.href = '../pages/movieDetails.html'
-    movieData(movieId)
-    castMovie(movieId)
-
-    async function movieData(movieId){
-        try{
-            const response = await fetch(`${baseURL}/movie/${movieId}${key}`)
-            if(response.status === 200){
-                const data = await response.json();
-                console.log(data.title)
-            }
-        }catch(error){
-            console.log(error)
-        }
-    }
-
-     async function castMovie(movieId){
-         try {
-             const cast = await fetch(`${baseURL}/movie/${movieId}/credits${key}`)
-             if (cast.status === 200) {
-                 const dataCast = await cast.json();
+    // window.location.href = '../pages/movieDetails.html'
+     movieData(movieId)
+     //castMovie(movieId)
+     clearMainSection()
+     async function movieData(movieId){
+         try{
+             const response = await fetch(`${baseURL}/movie/${movieId}${key}`)
+             if(response.status === 200){
+                 const data = await response.json();
+                 console.log(data.title)
+                 const movieInfo2 = ''
+                 movieInfo2.innerHTML = `
+                 <div class="col">
+                     <p>si se pudo</p>
+                 </div>
+                 
+                 `
+                 document.getElementById('contenedor').innerHTML = movieInfo2
+                 //movieData.append(movieInfo2)
  
-                 console.log(dataCast.cast)
-                 // let castDetails = ''
-                 dataCast.cast.forEach(actor => {
-                     //console.log(actor.name)
-
-                 })
              }
-         } catch (error) {
+         }catch(error){
              console.log(error)
          }
      }
- }
+ 
+    //   async function castMovie(movieId){
+    //       try {
+    //           const cast = await fetch(`${baseURL}/movie/${movieId}/credits${key}`)
+    //           if (cast.status === 200) {
+    //               const dataCast = await cast.json();
+  
+    //               console.log(dataCast.cast)
+    //               // let castDetails = ''
+    //               dataCast.cast.forEach(actor => {
+    //                   console.log(actor.name)
+ 
+    //               })
+    //           }
+    //       } catch (error) {
+    //           console.log(error)
+    //       }
+    //   }
+}
 
 function loadMovies(data) {
     let movies = ''
     let i = 0
     data.results.forEach(movie => {
         if (i < 15) {
+            const urlMovie = `${baseURL}/movie/${movie.id}${key}`
             movies += `
-        <div class='col mb-3' onclick='getMovieDetails(${movie.id})'>
+        <div class='col mb-3' onclick='getMovieDetails(${urlMovie})'>
             <div class="card bg-black flex-row border border-danger  border-3">
                 <div class="w-50">
-                    <a href="#" id="movieInfo"><img class='img-fluid' src= '${imageURL}${movie.poster_path}'></a>
+                    <a href="" id="movieInfo"><img class='img-fluid' src= '${imageURL}${movie.poster_path}'></a>
                 </div>
                 <div class="card-body">
                     <a href="#" id="movieInfo" class="bg-info text-center fs-4"><p class='title text-info'>${movie.title}</p></a>
@@ -210,7 +192,6 @@ function loadMovies(data) {
             i++
         }
     })
-
 }
 
 //call functions to execute
