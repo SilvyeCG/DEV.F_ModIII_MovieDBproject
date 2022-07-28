@@ -106,7 +106,13 @@ async function getMovieDetails(movieId) {
     if (response.status === 200) {
         const data = await response.json();
         console.log(data.title)
-        
+        localStorage.setItem('data', JSON.stringify(data))
+        clearMainSection()
+        const pruebamil = ''
+        pruebamil.innerHTML = `
+            <h1 class="text-white">hola</h1>
+        `
+        mainContainer.append(pruebamil)
     }
 
 }
